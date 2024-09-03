@@ -11,8 +11,8 @@ preprocessor = joblib.load('preprocessor.pkl')  # Load your pre-trained preproce
 model = load_model('ABHIDL.h5')  # Load your trained model
 
 # Define categorical and numerical features
-categorical_features = ['Age', 'Race', 'Gender']
-numerical_features = ['Phyiscal Health', 'Mental Health', 'Dental Health', 'Employment',
+categorical_features = ['Age', 'Race', 'Gender', 'Employment']  # Make sure 'Employment' is categorized correctly
+numerical_features = ['Phyiscal Health', 'Mental Health', 'Dental Health',
                       'Stress Keeps Patient from Sleeping', 'Medication Keeps Patient from Sleeping',
                       'Pain Keeps Patient from Sleeping', 'Bathroom Needs Keeps Patient from Sleeping',
                       'Uknown Keeps Patient from Sleeping', 'Trouble Sleeping', 'Prescription Sleep Medication']
@@ -41,10 +41,10 @@ input_data = pd.DataFrame({
     'Age': [age],
     'Race': [race],
     'Gender': [gender],
+    'Employment': [employment],
     'Phyiscal Health': [phy_health],
     'Mental Health': [mental_health],
     'Dental Health': [dental_health],
-    'Employment': [employment],
     'Stress Keeps Patient from Sleeping': [stress_sleep],
     'Medication Keeps Patient from Sleeping': [medication_sleep],
     'Pain Keeps Patient from Sleeping': [pain_sleep],
