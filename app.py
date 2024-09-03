@@ -54,17 +54,16 @@ input_data = pd.DataFrame({
     'Prescription Sleep Medication': [prescription_sleep]
 })
 
-# Preprocess the input data
-try:
-    input_data_preprocessed = preprocessor.transform(input_data)
-except Exception as e:
-    st.error(f"Error during preprocessing: {e}")
-
-# Make a prediction
-if 'input_data_preprocessed' in locals():
+# Button to make a prediction
+if st.button('Predict Doctor Visits'):
     try:
+        # Preprocess the input data
+        input_data_preprocessed = preprocessor.transform(input_data)
+
+        # Make a prediction
         prediction = model.predict(input_data_preprocessed)
         predicted_class = np.argmax(prediction, axis=1)[0]
+
         st.write(f'Predicted class: {predicted_class}')
     except Exception as e:
         st.error(f"Error during prediction: {e}")
