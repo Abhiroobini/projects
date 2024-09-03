@@ -11,8 +11,8 @@ preprocessor = joblib.load('preprocessor.pkl')  # Load your pre-trained preproce
 model = load_model('ABHIDL.h5')  # Load your trained model
 
 # Define categorical and numerical features
-categorical_features = ['Age', 'Race', 'Gender', 'Employment']  # Include 'Employment' as categorical
-numerical_features = ['Phyiscal Health', 'Mental Health', 'Dental Health',
+categorical_features = ['Age', 'Race', 'Gender']  # Remove 'Employment' from categorical
+numerical_features = ['Phyiscal Health', 'Mental Health', 'Dental Health', 'Employment',
                       'Stress Keeps Patient from Sleeping', 'Medication Keeps Patient from Sleeping',
                       'Pain Keeps Patient from Sleeping', 'Bathroom Needs Keeps Patient from Sleeping',
                       'Uknown Keeps Patient from Sleeping', 'Trouble Sleeping', 'Prescription Sleep Medication']
@@ -27,7 +27,7 @@ gender = st.selectbox('Gender', options=['Male', 'Female'])
 phy_health = st.number_input('Phyiscal Health', min_value=0, value=0)
 mental_health = st.number_input('Mental Health', min_value=0, value=0)
 dental_health = st.number_input('Dental Health', min_value=0, value=0)
-employment = st.selectbox('Employment', options=['Employed', 'Unemployed'])  # Adjust categories as needed
+employment = st.number_input('Employment (0=Unemployed, 1=Employed)', min_value=0, max_value=1, value=0)  # Numerical input for employment
 stress_sleep = st.number_input('Stress Keeps Patient from Sleeping', min_value=0, value=0)
 medication_sleep = st.number_input('Medication Keeps Patient from Sleeping', min_value=0, value=0)
 pain_sleep = st.number_input('Pain Keeps Patient from Sleeping', min_value=0, value=0)
@@ -41,7 +41,7 @@ input_data = pd.DataFrame({
     'Age': [age],
     'Race': [race],
     'Gender': [gender],
-    'Employment': [employment],
+    'Employment': [employment],  # Employment now treated as numerical
     'Phyiscal Health': [phy_health],
     'Mental Health': [mental_health],
     'Dental Health': [dental_health],
