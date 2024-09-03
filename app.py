@@ -10,7 +10,7 @@ import joblib
 
 # Load preprocessing objects and model
 preprocessor = joblib.load('preprocessor.pkl')  # Make sure to save the preprocessor in Colab
-model = load_model('model.h5')  # Make sure to save the model in Colab
+model = load_model('ABHIDL.h5')  # Make sure to save the model in Colab
 
 # Define categorical and numerical features
 categorical_features = ['Age', 'Race', 'Gender']
